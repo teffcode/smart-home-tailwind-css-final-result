@@ -26,6 +26,10 @@
     .controls {
       min-height: 300px;
     }
+    
+    .controls img {
+      margin: 0.5rem;
+    }
 
     #lights-toggle-button:checked + label,
     #cleaning-toggle-button:checked + label,
@@ -69,11 +73,11 @@
         <div class="grid place-items-center w-full lg:w-4/6">
           <img class="w-full'" src="https://i.ibb.co/09fmVRK/plan.png" alt="plan">
         </div>
-        <div class="controls grid place-items-center w-full lg:w-2/6 mt-8 lg:mt-0">
+        <div class="controls grid place-items-center w-full lg:w-2/6 mt-8 lg:my-0">
           <div class="controls grid gap-5 grid-cols-2 md:grid-cols-4 lg:grid-cols-2 grid-rows-2 md:grid-rows-1 lg:grid-rows-2 max-w-full w-full">
             <div class="glassmorphism relative grid place-items-center py-3 box-border w-full h-full cursor-pointer">
               <p class="m-0 text-sm">Lights</p>
-              <img class="w-8" src="https://img.icons8.com/pastel-glyph/64/000000/light--v1.png"/>
+              <img class="w-8 m-2" src="https://img.icons8.com/pastel-glyph/64/000000/light--v1.png"/>
               <input id="lights-toggle-button" type="checkbox" class="absolute w-full h-full opacity-0">
               <label for="lights-toggle-button" class="flex items-center bg-gray-400 h-6 w-12 rounded-full">
                 <div class="toggle-dot bg-white m-1 h-5 w-5 rounded-full"></div>
@@ -81,7 +85,7 @@
             </div>
             <div class="glassmorphism relative grid place-items-center py-3 box-border w-full h-full cursor-pointer">
               <p class="m-0 text-sm">Cleaning</p>
-              <img class="w-8" src="https://img.icons8.com/external-vitaliy-gorbachev-lineal-vitaly-gorbachev/60/000000/external-robot-vacuum-cleaner-internet-of-things-vitaliy-gorbachev-lineal-vitaly-gorbachev.png"/>
+              <img class="w-8 m-2" src="https://img.icons8.com/external-vitaliy-gorbachev-lineal-vitaly-gorbachev/60/000000/external-robot-vacuum-cleaner-internet-of-things-vitaliy-gorbachev-lineal-vitaly-gorbachev.png"/>
               <input id="cleaning-toggle-button" type="checkbox" class="absolute w-full h-full opacity-0">
               <label for="cleaning-toggle-button" class="flex items-center bg-gray-400 h-6 w-12 rounded-full">
                 <div class="toggle-dot bg-white m-1 h-5 w-5 rounded-full"></div>
@@ -89,7 +93,7 @@
             </div>
             <div class="glassmorphism relative grid place-items-center py-3 box-border w-full h-full cursor-pointer">
               <p class="m-0 text-sm">Music</p>
-              <img class="w-8" src="https://img.icons8.com/ios/96/000000/portable-speaker2.png"/>
+              <img class="w-8 m-2" src="https://img.icons8.com/ios/96/000000/portable-speaker2.png"/>
               <input id="music-toggle-button" type="checkbox" class="absolute w-full h-full opacity-0">
               <label for="music-toggle-button" class="flex items-center bg-gray-400 h-6 w-12 rounded-full">
                 <div class="toggle-dot bg-white m-1 h-5 w-5 rounded-full"></div>
@@ -97,7 +101,7 @@
             </div>
             <div class="glassmorphism relative grid place-items-center py-3 box-border w-full h-full cursor-pointer">
               <p class="m-0 text-sm">Motion sensor</p>
-              <img class="w-8" src="https://img.icons8.com/ios-glyphs/90/000000/infrared-beam-sending.png"/>
+              <img class="w-8 m-2" src="https://img.icons8.com/ios-glyphs/90/000000/infrared-beam-sending.png"/>
               <input id="motion-sensor-toggle-button" type="checkbox" class="absolute w-full h-full opacity-0">
               <label for="motion-sensor-toggle-button" class="flex items-center bg-gray-400 h-6 w-12 rounded-full">
                 <div class="toggle-dot bg-white m-1 h-5 w-5 rounded-full"></div>
