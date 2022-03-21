@@ -26,7 +26,7 @@
     .controls {
       min-height: 300px;
     }
-    
+
     .controls img {
       margin: 0.5rem;
     }
@@ -47,6 +47,69 @@
     #music-toggle-button:checked + label .toggle-dot,
     #motion-sensor-toggle-button:checked + label .toggle-dot {
       transform: translateX(1.3rem);
+    }
+
+    .light {
+      width: 0.4rem;
+      height: 0.4rem;
+      background: rgb(253 230 138);
+      -webkit-box-shadow: 10px 10px 50px 30px rgb(253 230 138);
+         -moz-box-shadow: 10px 10px 50px 30px rgb(253 230 138);
+              box-shadow: 10px 10px 50px 30px rgb(253 230 138);
+    }
+
+    .light-1 {
+      top: 11%;
+      left: 24%;
+    }
+
+    .light-2 {
+      top: 11%;
+      left: 46%;
+    }
+
+    .light-3 {
+      top: 16%;
+      left: 59%;
+    }
+
+    .vacuum-start {
+      bottom: 22%;
+      right: 12%;
+      width: 5%;
+    }
+
+    .vacuum {
+      animation: vacuum 5s ease infinite;
+    }
+
+    @keyframes vacuum {
+      0% {
+        transform: translate(0%) rotate(-360deg);
+      }
+      25% {
+        transform: translateY(-350%);
+      }
+      50% {
+        transform: translateY(-350%) translateX(-500%) rotate(360deg);
+      }
+      75% {
+        transform: translateY(-350%);
+      }
+      100% {
+        transform: translate(0%) rotate(360deg);
+      }
+    }
+
+    .sensor {
+      bottom: 49%;
+      left: 89%;
+      width: 0.4rem;
+      height: 0.4rem;
+      background: red;
+      -webkit-box-shadow: 10px 10px 50px 30px red;
+         -moz-box-shadow: 10px 10px 50px 30px red;
+              box-shadow: 10px 10px 50px 30px red;
     }
 
     @media (max-width: 1024px) {
@@ -70,10 +133,16 @@
       <p class="text-base lg:text-xl mt-0 mb-2 text-center">You are controlling</p>
       <h1 class="text-2xl lg:text-4xl m-0 text-center font-bold">Main Lounge & Dining Room</h1>
       <div class="flex flex-col lg:flex-row lg:gap-5 justify-center items-center w-full mt-8 lg:mt-16 mb-0 lg:my-16">
-        <div class="grid place-items-center w-full lg:w-4/6">
-          <img class="w-full'" src="https://i.ibb.co/09fmVRK/plan.png" alt="plan">
+        <div class="relative grid place-items-center w-full lg:w-4/6">
+          <img class="w-full " src="https://i.ibb.co/09fmVRK/plan.png" alt="plan">
+          <div id="light-1" class="light-1 absolute rounded-full"></div>
+          <div id="light-2" class="light-2 absolute rounded-full"></div>
+          <div id="light-3" class="light-3 absolute rounded-full"></div>
+          <img id="vacuum" class="vacuum-start absolute" src="https://img.icons8.com/external-vitaliy-gorbachev-flat-vitaly-gorbachev/58/000000/external-robot-vacuum-cleaner-internet-technology-vitaliy-gorbachev-flat-vitaly-gorbachev.png"/>
+          <audio id="audio" src="public/bensound-happyrock.mp3"></audio>
+          <div id="sensor" class="absolute rounded-full"></div>
         </div>
-        <div class="controls grid place-items-center w-full lg:w-2/6 mt-8 lg:my-0">
+        <div class="controls grid place-items-center w-full lg:w-2/6 mt-8 lg:mt-0">
           <div class="controls grid gap-5 grid-cols-2 md:grid-cols-4 lg:grid-cols-2 grid-rows-2 md:grid-rows-1 lg:grid-rows-2 max-w-full w-full">
             <div class="glassmorphism relative grid place-items-center py-3 box-border w-full h-full cursor-pointer">
               <p class="m-0 text-sm">Lights</p>
@@ -114,20 +183,66 @@
   </div>
 </body>
 <script>
+  // LIGHTS
   const lightsToggleButton = document.getElementById('lights-toggle-button')
-  const cleaningToggleButton = document.getElementById('cleaning-toggle-button')
-  const musicToggleButton = document.getElementById('music-toggle-button')
-  const motionSensorToggleButton = document.getElementById('motion-sensor-toggle-button')
+  const light1 = document.getElementById('light-1')
+  const light2 = document.getElementById('light-2')
+  const light3 = document.getElementById('light-3')
 
-  function addDarkStyle (toggleButton) {
-    toggleButton.addEventListener('change', () => {
-      document.body.classList.toggle('dark')
+  function turnOnLights() {
+    lightsToggleButton.addEventListener('change', () => {
+      light1.classList.toggle('light')
+      light2.classList.toggle('light')
+      light3.classList.toggle('light')
     })
   }
 
-  addDarkStyle(lightsToggleButton)
-  addDarkStyle(cleaningToggleButton)
-  addDarkStyle(musicToggleButton)
-  addDarkStyle(motionSensorToggleButton)
+  turnOnLights()
+
+  // VACUUM
+  const cleaningToggleButton = document.getElementById('cleaning-toggle-button')
+  const vacuum = document.getElementById('vacuum')
+
+  function turnOnVaccum() {
+    cleaningToggleButton.addEventListener('change', () => {
+      vacuum.classList.toggle('vacuum')
+    })
+  }
+
+  turnOnVaccum()
+
+  // MUSIC
+  const musicToggleButton = document.getElementById('music-toggle-button')
+  const audio = document.getElementById('audio')
+  const audioContext = new AudioContext()
+  const source = audioContext.createMediaElementSource(audio)
+  source.connect(audioContext.destination)
+  let paused = true
+
+  function turnOnMusic() {
+    musicToggleButton.addEventListener('change', () => {
+      if (paused) {
+        audio.play()
+        paused = false
+      } else {
+        audio.pause()
+        paused = true
+      }
+    })
+  }
+
+  turnOnMusic()
+
+  // SENSOR
+  const motionSensorToggleButton = document.getElementById('motion-sensor-toggle-button')
+  const sensor = document.getElementById('sensor')
+
+  function turnOnSensor() {
+    motionSensorToggleButton.addEventListener('change', () => {
+      sensor.classList.toggle('sensor')
+    })
+  }
+
+  turnOnSensor()
 </script>
 </html>
