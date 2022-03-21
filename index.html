@@ -224,9 +224,11 @@
       if (paused) {
         audio.play()
         paused = false
+        audioContext.resume() // For best practice (https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API/Best_practices)
       } else {
         audio.pause()
         paused = true
+        audioContext.resume() // For best practice (https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API/Best_practices)
       }
     })
   }
